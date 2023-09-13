@@ -1,0 +1,79 @@
+
+  
+  .circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: .7s;
+    cursor: pointer;
+  }
+  
+  .text {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    color: #f5f3ee;
+    animation: anim 10s linear infinite;
+    z-index: 1;
+  }
+  
+  .arrowButton {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.1em;
+    color: #fff;
+    transition: transform 0.2s ease-in-out;
+    z-index: 100;
+  }
+  
+  @keyframes anim {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .text span {
+    position: absolute;
+    left: 50%;
+    font-size: 0.7rem;
+    transform-origin: 0 60px;
+  }
+
+  .arrowButton img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .circle {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .text span {
+      position: absolute;
+      left: 50%;
+      font-size: .6rem;
+      transform-origin: 0 50px;
+    }
+  
+    .arrowButton {
+      font-size: 1.5em;
+    }
+  
+    
+  }
+  

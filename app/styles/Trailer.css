@@ -1,0 +1,36 @@
+
+  
+  #trailer {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    mix-blend-mode: difference;
+    border-radius: 50%;
+  
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 10000;
+  
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 150ms ease, opacity 500ms ease;
+  
+    display: grid;
+    place-items: center;
+  }
+  
+  #trailer-text {
+    font-size: 3px;
+    font-weight: 400;
+    color: black;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  
+  @media screen and (max-width: 700px) {
+    #trailer,
+    #trailer-text {
+      display: none;
+    }
+  }
