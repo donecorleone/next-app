@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^9.80.9",
     "@react-three/fiber": "^8.14.1",
+    "@studio-freight/react-lenis": "^0.0.28",
     "autoprefixer": "10.4.15",
     "drei": "^2.2.21",
     "gsap": "^3.12.2",

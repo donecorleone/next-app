@@ -27,6 +27,30 @@ main {
   font-family: 'Roboto Mono';
 }
 
+.text-container {
+  padding: 10vh 4vw;
+  
+}
+
+.text-container p {
+  font-size: 3rem;
+  color: white;
+  line-height: 1.1;
+  padding-right: 30%;
+  font-weight: 300;
+
+}
+
+.text-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 700px) {
+  .text-container p {
+    padding-right: 0;
+  }
+}
 
 /* Service headlines */
 
@@ -82,7 +106,7 @@ main {
 
 
 
-.char {
+#split-text .char {
   transform: translateY(7vw);
   transition: transform 0.5s;
 }
@@ -135,12 +159,10 @@ main {
   font-family: 'Inter Tight';
 }
 
-
 .service-content {
   flex: 2;
   flex-direction: row;
 }
-
 
 .service-item {
   position: relative;
@@ -156,7 +178,6 @@ main {
   padding-bottom: 0;
 }
   
-
 
 .service-item h3 {
   flex: 1;

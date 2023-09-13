@@ -1,157 +1,165 @@
 import React, { useEffect } from 'react';
 
 function ScrollEffect() {
-  useEffect(() => {
-    // Dynamically import the libraries
-    Promise.all([
-      import('gsap'),
-      import('gsap/ScrollTrigger')
-    ]).then(([gsapModule, scrollTriggerModule]) => {
-      const gsap = gsapModule.default;
-      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
-
-      gsap.registerPlugin(ScrollTrigger);
-
-     // Use split-type to split text
-      const splitText = new SplitType('#split-text')
-      console.log(splitText)
-     
+    useEffect(() => {
+        // Dynamically import the libraries
       
-      gsap.to('.char', {
-        y: 0,
-        stagger: 0.02,
-        delay: 0.1,
-        duration: .01,
-        scrollTrigger: {
-            trigger: '.service-overview',
-            start: 'top center',
-            toggleActions: "play none none reverse"
-        }
-    });
 
-    const heroTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.service-overview',
-            start: 'top center',
-            toggleActions: "play none none reverse"
-        }
-    });
+            // Split and animate text
+             handleTextAnimation(gsap, ScrollTrigger);
 
-    heroTimeline.to("img", {
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-        scale: 1.1,
-        duration: 0.7
-    });
+            // Handle hero animations
+             handleHeroAnimations(gsap, ScrollTrigger);
 
-    const serviceContainerTimeline = gsap.timeline({
-      paused: true,
-    });
+            // Handle service animations
+            // handleServiceAnimations(gsap, ScrollTrigger);
 
-    serviceContainerTimeline.to(".service-border", {
-      width: "100%",
-      duration: 2,
-      ease: "power4.out",
-  });
+            // Handle portfolio animations
+            // handlePortfolioAnimations(gsap, ScrollTrigger);
 
-  // Create a new timeline for the service item border animation
-  const serviceItemTimeline = gsap.timeline({
-      paused: true,
-  });
+            // Handle background color change
+            handleBackgroundColorChange(gsap, ScrollTrigger);
 
-  // Add the border animation to the timeline, with a delay to start after the service border is complete
-  serviceItemTimeline.to(".service-item-border", {
-      width: "100%",
-      duration: 1.5,
-      ease: "power4.out",
-  });
+            handleInfotextAnimation(gsap, ScrollTrigger);
+        });
 
-    // Add a scroll trigger to the service container
-    ScrollTrigger.create({
-      trigger: ".service-container",
-      start: "top 80%",
-      onEnter: () => {
-          serviceContainerTimeline.play();
-      },
-  });
-   
-  // When the service container animation completes, start the service item border animation
-  serviceContainerTimeline.call(() => {
-      serviceItemTimeline.play();
-  });
-
-  gsap.from("#portfolio-1, #portfolio-4", {
-    duration: 2,
-    y: -50,
-    yPercent: 0,
-    scrollTrigger: {
-        trigger: '.work-container',
-        start: 'top center',
-        end: 'bottom center',
-        scrub: 1.5
-    }
-});
-
-gsap.from("#portfolio-2, #portfolio-5", {
-    duration: 2,
-    y: -100,
-    yPercent: 0,
-    scrollTrigger: {
-        trigger: '.work-container',
-        start: 'top center',
-        end: 'bottom center',
-        scrub: 1.5
-       
-    }
-});
-
-gsap.from("#portfolio-3, #portfolio-6", {
-    duration: 2,
-    y: -150,
-    yPercent: 0,
-    scrollTrigger: {
-        trigger: '.work-container',
-        start: 'top center',
-        end: 'bottom center',
-        scrub: 1.5
-       
-    }
-});
-
-      // ScrollTrigger for background color change
-      const portfolioContainer = document.querySelector(".portfolio-container");
-      const infoContainer = document.querySelector(".service-overview");
-
-      ScrollTrigger.create({
-        trigger: portfolioContainer,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          gsap.to("main", { backgroundColor: "#121212", color: "#fff" });
-        },
-        onLeave: () => {
-          gsap.to("main", { backgroundColor: "#fff", color: "#121212", duration: 1 });
-        },
-        onEnterBack: () => {
-          gsap.to("main", { backgroundColor: "#121212", color: "#fff", duration: 1 });
-        },
-      });
-
-      ScrollTrigger.create({
-        trigger: infoContainer,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          gsap.to("main", { backgroundColor: "#fff", color: "#121212", duration: 1 });
-        },
-        onLeaveBack: () => {
-          gsap.to("main", { backgroundColor: "#121212", color: "#fff", duration: 1 });
-        },
-      });
-
-    });
-  }, []);
-
-  return null;
+    return null;
 }
+
+ function handleTextAnimation(gsap, ScrollTrigger) {
+     const splitText = new SplitType('#split-text');
+     gsap.to('.char', {
+         y: 0,
+         stagger: 0.02,
+         delay: 0.1,
+         duration: .01,
+         scrollTrigger: {
+             trigger: '.service-overview',
+             start: 'top center',
+             toggleActions: "play none none reverse"
+         }
+     });
+ }
+
+ function handleHeroAnimations(gsap, ScrollTrigger) {
+     const heroTimeline = gsap.timeline({
+         scrollTrigger: {
+             trigger: '.service-overview',
+             start: 'top center',
+             toggleActions: "play none none reverse"
+         }
+     });
+
+     heroTimeline.to("img", {
+         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+         scale: 1.1,
+         duration: 0.7
+     });
+ }
+
+function handleInfotextAnimation(gsap, ScrollTrigger) {
+  const splitTypeText = document.querySelectorAll('.info-text')
+
+      splitTypeText.forEach((char, i) => {
+        const textAnimation = new SplitType(char, {types: 'chars'})
+
+        gsap.from(textAnimation.chars, {
+          scrollTrigger: {
+            trigger: char,
+            start: 'top 80%',
+            end: 'top 40%',
+            scrub: true
+          },
+          opacity: 0.2,
+          stagger: 0.1
+        })
+      })
+}
+
+// function handleServiceAnimations(gsap, ScrollTrigger) {
+//     const serviceContainerTimeline = gsap.timeline({ paused: true });
+//     serviceContainerTimeline.to(".service-border", {
+//         width: "100%",
+//         duration: 2,
+//         ease: "power4.out",
+//     });
+
+//     const serviceItemTimeline = gsap.timeline({ paused: true });
+//     serviceItemTimeline.to(".service-item-border", {
+//         width: "100%",
+//         duration: 1.5,
+//         ease: "power4.out",
+//     });
+
+//     ScrollTrigger.create({
+//         trigger: ".service-container",
+//         start: "top 80%",
+//         onEnter: () => {
+//             serviceContainerTimeline.play();
+//         },
+//     });
+
+//     serviceContainerTimeline.call(() => {
+//         serviceItemTimeline.play();
+//     });
+// }
+
+// function handlePortfolioAnimations(gsap, ScrollTrigger) {
+//     const portfolioAnimations = [
+//         { selector: "#portfolio-1, #portfolio-4", y: -50 },
+//         { selector: "#portfolio-2, #portfolio-5", y: -100 },
+//         { selector: "#portfolio-3, #portfolio-6", y: -150 }
+//     ];
+
+//     portfolioAnimations.forEach(animation => {
+//         gsap.from(animation.selector, {
+//             duration: 2,
+//             y: animation.y,
+//             yPercent: 0,
+//             scrollTrigger: {
+//                 trigger: '.work-container',
+//                 start: 'top center',
+//                 end: 'bottom center',
+//                 scrub: 1.5
+//             }
+//         });
+//     });
+// }
+
+function handleBackgroundColorChange(gsap, ScrollTrigger) {
+
+        // ScrollTrigger for background color change
+        const textContainer = document.querySelector(".text-containerr");
+        const portfolioContainer = document.querySelector(".portfolio-container");
+  
+        ScrollTrigger.create({
+          trigger: textContainer,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => {
+            gsap.to("main", { backgroundColor: "#121212", color: "#fff" });
+          },
+          onLeave: () => {
+            gsap.to("main", { backgroundColor: "#fff", color: "#121212", duration: 1 });
+          },
+          onEnterBack: () => {
+            gsap.to("main", { backgroundColor: "#121212", color: "#fff", duration: 1 });
+          },
+        });
+  
+        ScrollTrigger.create({
+          trigger: portfolioContainer,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => {
+            gsap.to("main", { backgroundColor: "#fff", color: "#121212", duration: 1 });
+          },
+          onLeaveBack: () => {
+            gsap.to("main", { backgroundColor: "#121212", color: "#fff", duration: 1 });
+          },
+        });
+}
+
+
 
 export default ScrollEffect;

@@ -1,17 +1,31 @@
 // pages/index.js
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import HeroScene from '@/app/components/HeroScene';
 import InfoScene from '@/app/components/InfoScene';
 import CircularButton from '@/app/components/CircularButton';
 import Trailer from '@/app/components/Trailer';
 import ScrollEffect from '@/app/components/ScrollEffect';
-
+import Lenis from '@studio-freight/lenis'
+import SplitType from 'split-type';
+import gsap from 'gsap';
 
 export default function Home() {
   
+  useEffect( () => {
+    const lenis = new Lenis()
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+  }, [])
+  
+
   return (
     <>
       {/* <Trailer /> */}
@@ -26,7 +40,7 @@ export default function Home() {
           <span>SHOP</span>
         </div>
 
-        <div className='meddl absolute w-full h-screen z-10 bg-transparent flex justify-end items-end px-[2vw] py-[1vh] sm:py-[3vh]'>
+        <div className='meddl absolute w-full h-screen z-10 bg-transparent flex justify-end items-end px-[4vw] py-[1vh] sm:py-[3vh]'>
           <CircularButton />
         </div>
 
@@ -44,8 +58,13 @@ export default function Home() {
           </Canvas>
         </div>
 
-        <div className='w-full px-[2vw]'>
-          <div className='work-container w-full h-[20vh] flex items-center'>
+        <div className='text-container w-full h-fit'>
+          <h2 className='text-white pb-8'>ABOUT RACENCY</h2>
+          <p className='info-text w-full'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+        </div>
+
+        <div className='portfolio-section w-full px-[4vw]'>
+          <div className='portfolio-text w-full h-[20vh] flex items-center'>
             <h2 className='text-2xl text-white'>our recent work</h2>
           </div>
           <div className="portfolio-container w-full grid grid-cols-1 md:grid-cols-3 gap-12 py-[10vh]">
@@ -96,62 +115,6 @@ export default function Home() {
         </div>   
       </div>   
 
-      <div className='w-full min-h-screen'>
-      <div className="service-container">
-      <div className="service-border"></div>
-      <div className="service-title">
-        <div className="sticky-box">OUR SERVICE</div>
-      </div>
-      <div className="service-content">
-        <div className="service-item">
-          <h3 data-type="link">01. Branding</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa nam
-            reiciendis unde magni eligendi excepturi maxime nulla adipisci,
-            veniam officiis, explicabo commodi laboriosam blanditiis repellendus
-            quidem debitis ab! Aliquid, facere. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit.
-          </p>
-        </div>
-
-        <div className="service-item">
-          <div className="service-item-border"></div>
-          <h3>02. Webdesign</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa nam
-            reiciendis unde magni eligendi excepturi maxime nulla adipisci,
-            veniam officiis, explicabo commodi laboriosam blanditiis repellendus
-            quidem debitis ab! Aliquid, facere. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit.
-          </p>
-        </div>
-
-        <div className="service-item">
-          <div className="service-item-border"></div>
-          <h3>03. Online Marketing</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa nam
-            reiciendis unde magni eligendi excepturi maxime nulla adipisci,
-            veniam officiis, explicabo commodi laboriosam blanditiis repellendus
-            quidem debitis ab! Aliquid, facere. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit.
-          </p>
-        </div>
-
-        <div className="service-item">
-          <div className="service-item-border"></div>
-          <h3>04. Werbetechnik</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa nam
-            reiciendis unde magni eligendi excepturi maxime nulla adipisci,
-            veniam officiis, explicabo commodi laboriosam blanditiis repellendus
-            quidem debitis ab! Aliquid, facere. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div> 
 
 
         <div className='info-container w-full'>
