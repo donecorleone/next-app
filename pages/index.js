@@ -34,10 +34,14 @@ export default function Home() {
       <main className='w-full'>
         
         <div className="header absolute w-full h-[8vh] z-10 bg-transparent text-white">
-          <span>ART</span>
-          <span>ABOUT</span>
-          <span>VISIT</span>
-          <span>SHOP</span>
+         
+        
+         <nav>
+          <a>Home</a>
+          <a>About</a>
+          <a>Portfolio</a>
+          <a>Kontakt</a>
+         </nav>
         </div>
 
         <div className='meddl absolute w-full h-screen z-10 bg-transparent flex justify-end items-end px-[4vw] py-[1vh] sm:py-[3vh]'>
@@ -59,13 +63,13 @@ export default function Home() {
         </div>
 
         <div className='text-container w-full h-fit'>
-          <h2 className='text-white pb-8'>ABOUT RACENCY</h2>
+          <h2 className=' pb-8'>ABOUT RACENCY</h2>
           <p className='info-text w-full'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
         </div>
 
         <div className='portfolio-section w-full px-[4vw]'>
           <div className='portfolio-text w-full h-[20vh] flex items-center'>
-            <h2 className='text-2xl text-white'>our recent work</h2>
+            <h2 className='text-2xl'>our recent work</h2>
           </div>
           <div className="portfolio-container w-full grid grid-cols-1 md:grid-cols-3 gap-12 py-[10vh]">
             <div className="interactable min-h-[90vh]" id='portfolio-1'>

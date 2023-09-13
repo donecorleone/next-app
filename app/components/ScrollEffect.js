@@ -20,7 +20,7 @@ function ScrollEffect() {
             // Handle background color change
             handleBackgroundColorChange(gsap, ScrollTrigger);
 
-            handleInfotextAnimation(gsap, ScrollTrigger);
+            // handleInfotextAnimation(gsap, ScrollTrigger);
         });
 
     return null;
@@ -57,24 +57,27 @@ function ScrollEffect() {
      });
  }
 
-function handleInfotextAnimation(gsap, ScrollTrigger) {
-  const splitTypeText = document.querySelectorAll('.info-text')
 
-      splitTypeText.forEach((char, i) => {
-        const textAnimation = new SplitType(char, {types: 'chars'})
 
-        gsap.from(textAnimation.chars, {
-          scrollTrigger: {
-            trigger: char,
-            start: 'top 80%',
-            end: 'top 40%',
-            scrub: true
-          },
-          opacity: 0.2,
-          stagger: 0.1
-        })
-      })
-}
+// function handleInfotextAnimation(gsap, ScrollTrigger) {
+//   const splitTypeText = document.querySelectorAll('.info-text')
+
+//       splitTypeText.forEach((char, i) => {
+//         const textAnimation = new SplitType(char, {types: 'chars'})
+
+//         gsap.from(textAnimation.chars, {
+//           scrollTrigger: {
+//             trigger: char,
+//             start: 'top 80%',
+//             end: 'top 30%',
+//             scrub: true,
+//             once: true
+//           },
+//           opacity: 0.2,
+//           stagger: 0.1
+//         })
+//       })
+// }
 
 // function handleServiceAnimations(gsap, ScrollTrigger) {
 //     const serviceContainerTimeline = gsap.timeline({ paused: true });
