@@ -45,7 +45,7 @@ export default function HeroScene() {
         scale={[5, 5, 5]}
         position-y={0}
         speed={0.5}
-        count={20}
+        count={30}
       />
     </>
   );

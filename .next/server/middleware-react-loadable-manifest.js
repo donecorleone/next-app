@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"index.js -> @/app/components/HeroScene\":{\"id\":\"index.js -> @/app/components/HeroScene\",\"files\":[\"static/chunks/app_components_HeroScene_js.js\"]},\"index.js -> @/app/components/ScrollEffect\":{\"id\":\"index.js -> @/app/components/ScrollEffect\",\"files\":[\"static/chunks/app_components_ScrollEffect_js.js\"]}}"

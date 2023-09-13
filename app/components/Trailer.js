@@ -1,54 +1,64 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-export default function Trailer() {
-  const [trailerTextContent, setTrailerTextContent] = useState('');
-  const [isInteracting, setIsInteracting] = useState(false);
+const Trailer = () => {
   const trailerRef = useRef(null);
-  const trailerTextRef = useRef(null);
-
-  const animateTrailer = (e, interacting) => {
-    const x = e.clientX - trailerRef.current.offsetWidth / 2;
-    const y = e.clientY - trailerRef.current.offsetHeight / 2;
-
-    const transformValue = `translate(${x}px, ${y}px) scale(${interacting ? 6 : 1})`;
-
-    trailerRef.current.style.transform = transformValue;
-  };
-
-  const handleMouseMove = (e) => {
-    const interactable = e.target.closest(".interactable");
-    const interacting = interactable !== null;
-
-    setIsInteracting(interacting);
-    animateTrailer(e, interacting);
-
-    if (interacting) {
-      if (interactable.classList.contains("cta-action")) {
-        setTrailerTextContent("Contact");
-      } else {
-        setTrailerTextContent("View");
-      }
-    } else {
-      setTrailerTextContent('');
-    }
-  };
+  const iconRef = useRef(null);
 
   useEffect(() => {
+    const trailer = trailerRef.current;
+    const icon = iconRef.current;
+
+    const animateTrailer = (e, interacting) => {
+      const x = e.clientX - trailer.offsetWidth / 2,
+            y = e.clientY - trailer.offsetHeight / 2;
+
+      const keyframes = {
+        transform: `translate(${x}px, ${y}px) scale(${interacting ? 8 : 1})`
+      }
+
+      trailer.animate(keyframes, { 
+        duration: 800, 
+        fill: "forwards" 
+      });
+    }
+
+    const getTrailerClass = type => {
+      switch(type) {
+        case "video":
+          return "fa-solid fa-play";
+        default:
+          return "fa-solid fa-arrow-up-right"; 
+      }
+    }
+
+    const handleMouseMove = e => {
+      const interactable = e.target.closest(".interactable"),
+            interacting = interactable !== null;
+
+      animateTrailer(e, interacting);
+
+      trailer.dataset.type = interacting ? interactable.dataset.type : "";
+
+      if(interacting) {
+        icon.className = getTrailerClass(interactable.dataset.type);
+      }
+    }
+
     window.addEventListener('mousemove', handleMouseMove);
 
+    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-    };
+    }
   }, []);
 
   return (
     <>
-      <div id="trailer" ref={trailerRef} style={{ opacity: '1' }}>
-        {/* ... other content inside the trailer ... */}
-      </div>
-      <div id="trailer-text" ref={trailerTextRef}>
-        {trailerTextContent}
-      </div>
+      <div id="trailer" ref={trailerRef}></div>
+      <div id="trailer-icon" ref={iconRef}></div>
+      {/* ... rest of your component */}
     </>
   );
 }
+
+export default Trailer;
