@@ -69,7 +69,7 @@ function handleInfotextAnimation(gsap, ScrollTrigger) {
           scrollTrigger: {
             trigger: char,
             start: 'top 80%',
-            end: 'top 30%',
+            end: 'top 20%',
             scrub: true,
             once: true
           },

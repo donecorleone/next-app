@@ -14,6 +14,7 @@
     "@studio-freight/react-lenis": "^0.0.28",
     "autoprefixer": "10.4.15",
     "drei": "^2.2.21",
+    "framer-motion": "^10.16.4",
     "gsap": "^3.12.2",
     "next": "13.4.19",
     "postcss": "8.4.28",
